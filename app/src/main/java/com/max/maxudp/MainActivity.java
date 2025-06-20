@@ -14,7 +14,7 @@ import java.net.InetAddress;
 public class MainActivity extends AppCompatActivity {
 
     private static final int SERVER_PORT = 9050;
-    private static final String SERVER_IP = "your.server.ip"; // Replace with your DigitalOcean IP
+    private static final String SERVER_IP = "178.128.195.163"; // Replace with your DigitalOcean IP
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
