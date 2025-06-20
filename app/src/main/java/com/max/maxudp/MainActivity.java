@@ -1,5 +1,7 @@
 package com.max.maxudp;
 
+import android.content.Intent;
+import android.net.VpnService;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,7 +16,8 @@ import java.net.InetAddress;
 public class MainActivity extends AppCompatActivity {
 
     private static final int SERVER_PORT = 9050;
-    private static final String SERVER_IP = "178.128.195.163"; // Replace with your DigitalOcean IP
+    private static final String SERVER_IP = "178.128.195.163"; // Your DO IP
+    private static final int VPN_REQUEST_CODE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
         EditText inputText = findViewById(R.id.inputText);
         Button sendButton = findViewById(R.id.sendButton);
+        Button startVpnButton = findViewById(R.id.startVpnButton);
+        Button stopVpnButton = findViewById(R.id.stopVpnButton);
         TextView responseText = findViewById(R.id.responseText);
 
         sendButton.setOnClickListener(v -> {
@@ -55,5 +60,26 @@ public class MainActivity extends AppCompatActivity {
                 }
             }).start();
         });
+
+        startVpnButton.setOnClickListener(v -> {
+            Intent vpnIntent = VpnService.prepare(this);
+            if (vpnIntent != null) {
+                startActivityForResult(vpnIntent, VPN_REQUEST_CODE);
+            } else {
+                onActivityResult(VPN_REQUEST_CODE, RESULT_OK, null);
+            }
+        });
+
+        stopVpnButton.setOnClickListener(v ->
+                stopService(new Intent(this, MyVpnService.class))
+        );
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == VPN_REQUEST_CODE && resultCode == RESULT_OK) {
+            startService(new Intent(this, MyVpnService.class));
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

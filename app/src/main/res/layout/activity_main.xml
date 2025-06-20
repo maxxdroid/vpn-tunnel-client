@@ -1,32 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/inputText"
-        android:layout_marginTop="60dp"
-        android:hint="Enter GET URL"
+    <LinearLayout
+        android:padding="16dp"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textUri"/>
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/sendButton"
-        android:text="Send UDP Request"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"/>
+        <EditText
+            android:id="@+id/inputText"
+            android:layout_marginTop="60dp"
+            android:hint="Enter GET URL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textUri"/>
 
-    <TextView
-        android:id="@+id/responseText"
-        android:text="Response will appear here"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:textColor="#333"
-        android:textSize="16sp"/>
-</LinearLayout>
+        <Button
+            android:id="@+id/sendButton"
+            android:text="Send UDP Request"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"/>
+
+        <Button
+            android:id="@+id/startVpnButton"
+            android:text="Start VPN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"/>
+
+        <Button
+            android:id="@+id/stopVpnButton"
+            android:text="Stop VPN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"/>
+
+        <TextView
+            android:id="@+id/responseText"
+            android:text="Response will appear here"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:textColor="#333"
+            android:textSize="16sp"/>
+    </LinearLayout>
+</ScrollView>
